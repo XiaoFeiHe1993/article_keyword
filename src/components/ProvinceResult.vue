@@ -20,7 +20,7 @@ export default {
       yAxisData: [],
       xAxisData: [],
       provinces: [
-        '北',
+        '北京',
         '天津',
         '上海',
         '重庆',

@@ -19,9 +19,9 @@
       <!-- 词云图 -->
       <echart-words :data="analyResult.count" />
       <!-- 各省统计结果 -->
-      <province-result />
+      <province-result :article="state.articleInput" />
       <!-- 主要城市统计结果 -->
-      <city-result />
+      <city-result :article="state.articleInput" />
     </el-card>
   </div>
 </template>
