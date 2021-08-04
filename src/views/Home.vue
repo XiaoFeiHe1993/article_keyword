@@ -18,6 +18,10 @@
       <echart-histogram :data="analyResult.count" />
       <!-- 词云图 -->
       <echart-words :data="analyResult.count" />
+      <!-- 各省统计结果 -->
+      <province-result />
+      <!-- 主要城市统计结果 -->
+      <city-result />
     </el-card>
   </div>
 </template>
@@ -26,13 +30,15 @@
 import { defineComponent, reactive, toRefs } from 'vue'
 import EchartWords from '@/components/EchartWords.vue'
 import EchartHistogram from '@/components/EchartHistogram.vue'
+import ProvinceResult from '@/components/ProvinceResult.vue'
+import CityResult from '@/components/CityResult.vue'
 import { dealWords, countWords } from '@/utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
 
 export default defineComponent({
   name: 'App',
-  components: { EchartWords, EchartHistogram },
+  components: { EchartWords, EchartHistogram, ProvinceResult, CityResult },
   setup () {
     const state = reactive({
       articleInput: '',
