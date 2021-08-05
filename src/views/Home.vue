@@ -19,9 +19,9 @@
       <!-- 词云图 -->
       <echart-words :data="analyResult.count" />
       <!-- 各省统计结果 -->
-      <province-result :article="state.articleInput" />
+      <province-result :article="articleInput" />
       <!-- 主要城市统计结果 -->
-      <city-result :article="state.articleInput" />
+      <city-result :article="articleInput" />
     </el-card>
   </div>
 </template>
@@ -38,7 +38,12 @@ const sentiment = require('sentiment-zh_cn_web')
 
 export default defineComponent({
   name: 'App',
-  components: { EchartWords, EchartHistogram, ProvinceResult, CityResult },
+  components: {
+    EchartWords,
+    EchartHistogram,
+    ProvinceResult,
+    CityResult
+  },
   setup () {
     const state = reactive({
       articleInput: '',

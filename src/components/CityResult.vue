@@ -15,7 +15,7 @@ export default {
       default: ''
     }
   },
-  setup (props, context) {
+  setup (props: any) {
     const state: { yAxisData: any; xAxisData: any; citys: any } = reactive({
       yAxisData: [],
       xAxisData: [],
