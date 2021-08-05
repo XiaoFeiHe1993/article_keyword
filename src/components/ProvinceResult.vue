@@ -7,6 +7,7 @@
 <script lang="ts">
 import * as echarts from 'echarts'
 import { toRefs, reactive, onMounted, watch } from 'vue'
+import { countStrNumber } from '@/utils/index'
 export default {
   name: 'ProvinceResult',
   props: {
@@ -62,7 +63,7 @@ export default {
       // 指定图表的配置项和数据
       const option = {
         title: {
-          text: '分词',
+          text: '省份统计',
           subtext: ''
         },
         tooltip: {
@@ -106,7 +107,7 @@ export default {
           state.yAxisData = []
           state.xAxisData = []
           for (let i = 0; i < state.provinces.length; i++) {
-            state.yAxisData.push(state.provinces[i].length)
+            state.yAxisData.push(countStrNumber(props.article, state.provinces[i]))
             state.xAxisData.push(state.provinces[i])
           }
           drawHistogram()

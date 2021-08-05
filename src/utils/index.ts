@@ -1,3 +1,6 @@
+/**
+ * 过滤特殊字符
+ * */
 export const dealWords = (value: any): any => {
   const result:Array<string> = []
   if (value && value.length > 0) {
@@ -10,6 +13,9 @@ export const dealWords = (value: any): any => {
   return result
 }
 
+/**
+ * 统计数组中字符串数量
+ * */
 export const countWords = (value: any): any => {
   let result:any = []
   const obj:any = {}
@@ -30,4 +36,12 @@ export const countWords = (value: any): any => {
     return b.value - a.value
   })
   return result
+}
+
+/**
+ * 统计字符串中子字符串的数量
+ * */
+export const countStrNumber = (str: string, sub: string): number => {
+  const s = str.replaceAll(sub, '')
+  return (str.length - s.length) / sub.length
 }

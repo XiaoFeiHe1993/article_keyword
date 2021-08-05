@@ -78,6 +78,13 @@ export default defineComponent({
     .article-input {
       height: 100%;
     }
+    /deep/ .el-card__body {
+      height: calc(100% - 100px);
+      overflow-y: auto;
+    }
+    /deep/ .el-card__body::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
   }
 }
 </style>

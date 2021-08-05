@@ -7,6 +7,7 @@
 <script lang="ts">
 import * as echarts from 'echarts'
 import { toRefs, reactive, onMounted, watch } from 'vue'
+import { countStrNumber } from '@/utils/index'
 export default {
   name: 'CityResult',
   props: {
@@ -24,34 +25,42 @@ export default {
         '天津',
         '上海',
         '重庆',
-        '黑龙江',
-        '吉林',
-        '辽宁',
-        '河北',
-        '山西',
-        '青海',
-        '山东',
-        '河南',
-        '江苏',
-        '安徽',
-        '浙江',
-        '福建',
-        '江西',
-        '湖南',
-        '湖北',
-        '广东',
-        '台湾',
-        '海南',
-        '甘肃',
-        '陕西',
-        '四川',
-        '贵州',
-        '云南',
-        '内蒙古',
-        '新疆',
-        '西藏',
-        '宁夏',
-        '广西',
+        '哈尔滨',
+        '长春',
+        '沈阳',
+        '大连',
+        '石家庄',
+        '太原',
+        '西宁',
+        '济南',
+        '青岛',
+        '郑州',
+        '南京',
+        '苏州',
+        '无锡',
+        '合肥',
+        '杭州',
+        '宁波',
+        '福州',
+        '厦门',
+        '泉州',
+        '南昌',
+        '长沙',
+        '武汉',
+        '广州',
+        '深圳',
+        '佛山',
+        '海口',
+        '兰州',
+        '西安',
+        '程度',
+        '贵阳',
+        '昆明',
+        '呼和浩特',
+        '乌鲁木齐',
+        '拉萨',
+        '银川',
+        '南宁',
         '香港',
         '澳门'
       ]
@@ -62,7 +71,7 @@ export default {
       // 指定图表的配置项和数据
       const option = {
         title: {
-          text: '分词',
+          text: '重要城市统计',
           subtext: ''
         },
         tooltip: {
@@ -106,7 +115,7 @@ export default {
           state.yAxisData = []
           state.xAxisData = []
           for (let i = 0; i < state.citys.length; i++) {
-            state.yAxisData.push(state.citys[i].length)
+            state.yAxisData.push(countStrNumber(props.article, state.citys[i]))
             state.xAxisData.push(state.citys[i])
           }
           drawHistogram()
