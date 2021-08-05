@@ -16,7 +16,7 @@ export default {
     }
   },
   setup (props, context) {
-    const state = reactive({
+    const state: { yAxisData: any; xAxisData: any; citys: any } = reactive({
       yAxisData: [],
       xAxisData: [],
       citys: [
@@ -57,7 +57,7 @@ export default {
       ]
     })
     const drawHistogram = () => {
-      const myChart = echarts.init(document.getElementById('city'))
+      const myChart = echarts.init(document.getElementById('city') as HTMLDivElement)
 
       // 指定图表的配置项和数据
       const option = {
