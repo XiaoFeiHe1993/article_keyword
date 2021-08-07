@@ -31,10 +31,10 @@ export default {
       () => {
         state.result = props.article
         for (let i = 0; i < props.positive.length; i++) {
-          state.result = state.result.replaceAll(props.positive[i], `<span style="background-color: yellow;">${props.positive[i]}</span>`)
+          state.result = state.result.replaceAll(props.positive[i], `<span style="background-color: lawngreen;">${props.positive[i]}</span>`)
         }
         for (let i = 0; i < props.negative.length; i++) {
-          state.result = state.result.replaceAll(props.negative[i], `<span style="background-color: red;">${props.negative[i]}</span>`)
+          state.result = state.result.replaceAll(props.negative[i], `<span style="background-color: orangered;">${props.negative[i]}</span>`)
         }
       }
     )

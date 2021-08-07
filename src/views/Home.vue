@@ -26,7 +26,7 @@
           <hightlight-keyword :article="articleInput" />
         </el-tab-pane>
         <el-tab-pane label="词性分析" name="fourth">
-          <positive-negative :article="articleInput" :positive="[]" :negative="[]" />
+          <positive-negative :article="articleInput" :positive="analyResult.positive" :negative="analyResult.negative" />
         </el-tab-pane>
       </el-tabs>
     </el-card>
