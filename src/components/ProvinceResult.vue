@@ -79,18 +79,24 @@ export default {
           containLabel: true
         },
         xAxis: {
-          type: 'value',
-          boundaryGap: [0, 0.01]
+          type: 'category',
+          data: state.xAxisData,
+          axisLabel: {
+            interval: 0,
+            rotate: 45,
+            textStyle: {
+              color: 'black',
+              fontSize: 10
+            }
+          }
         },
         yAxis: {
-          type: 'category',
-          data: state.yAxisData
+          type: 'value'
         },
         series: [
           {
-            name: '2011年',
             type: 'bar',
-            data: state.xAxisData
+            data: state.yAxisData
           }
         ]
       }
@@ -110,6 +116,8 @@ export default {
             state.yAxisData.push(countStrNumber(props.article, state.provinces[i]))
             state.xAxisData.push(state.provinces[i])
           }
+          console.log('....', state.yAxisData)
+          console.log('....', state.xAxisData)
           drawHistogram()
         }
       }
