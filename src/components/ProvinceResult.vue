@@ -1,6 +1,6 @@
 <template>
   <div class="province-result">
-    <div id="province" style="width: 100%; height: 600px;"></div>
+    <div id="province" style="width: 600px; height: 600px;"></div>
   </div>
 </template>
 
@@ -130,5 +130,8 @@ export default {
 <style lang="less" scoped>
 .province-result {
   width: 100%;
+  /deep/ canvas {
+    width: 100% !important;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="city-result">
-    <div id="city" style="width: 100%; height: 800px;"></div>
+    <div id="city" style="width: 600px; height: 800px;"></div>
   </div>
 </template>
 
@@ -131,5 +131,8 @@ export default {
 <style lang="less" scoped>
 .city-result {
   width: 100%;
+  /deep/ canvas {
+    width: 100% !important;
+  }
 }
 </style>
