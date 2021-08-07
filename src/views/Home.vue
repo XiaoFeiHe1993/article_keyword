@@ -11,12 +11,12 @@
     <el-card class="box-card" style="margin-left: 10px;">
       <el-tabs v-model="activeName" @tab-click="handleTabsClick">
         <el-tab-pane label="关键词分析" name="first">
-          <!-- 柱状图 -->
+          <!-- 关键词柱状图 -->
           <echart-histogram :data="analyResult.count" />
-          <!-- 词云图 -->
+          <!-- 关键词词云图 -->
           <echart-words :data="analyResult.count" />
         </el-tab-pane>
-        <el-tab-pane label="地里分析" name="second">
+        <el-tab-pane label="地理分析" name="second">
           <!-- 各省统计结果 -->
           <province-result :article="articleInput" />
           <!-- 主要城市统计结果 -->
@@ -25,7 +25,9 @@
         <el-tab-pane label="文章分析" name="third">
           <hightlight-keyword :article="articleInput" />
         </el-tab-pane>
-        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+        <el-tab-pane label="词性分析" name="fourth">
+          <positive-negative :article="articleInput" :positive="[]" :negative="[]" />
+        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
@@ -38,6 +40,7 @@ import EchartHistogram from '@/components/EchartHistogram.vue'
 import ProvinceResult from '@/components/ProvinceResult.vue'
 import CityResult from '@/components/CityResult.vue'
 import HightlightKeyword from '@/components/HightlightKeyword.vue'
+import positiveNegative from '@/components/positiveNegative.vue'
 import { dealWords, countWords } from '@/utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
@@ -49,7 +52,8 @@ export default defineComponent({
     EchartHistogram,
     ProvinceResult,
     CityResult,
-    HightlightKeyword
+    HightlightKeyword,
+    positiveNegative
   },
   setup () {
     const state = reactive({
