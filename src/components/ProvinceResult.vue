@@ -1,6 +1,6 @@
 <template>
   <div class="province-result">
-    <div id="province" style="width: 100%; height: 400px;"></div>
+    <div id="province" style="width: 100%; height: 600px;"></div>
   </div>
 </template>
 
@@ -21,38 +21,38 @@ export default {
       yAxisData: [],
       xAxisData: [],
       provinces: [
-        '北京',
-        '天津',
-        '上海',
-        '重庆',
-        '黑龙江',
-        '吉林',
-        '辽宁',
-        '河北',
-        '山西',
-        '青海',
-        '山东',
-        '河南',
-        '江苏',
-        '安徽',
-        '浙江',
-        '福建',
-        '江西',
-        '湖南',
-        '湖北',
         '广东',
-        '台湾',
-        '海南',
-        '甘肃',
-        '陕西',
+        '江苏',
+        '山东',
+        '浙江',
+        '河南',
         '四川',
-        '贵州',
+        '福建',
+        '湖北',
+        '湖南',
+        '安徽',
+        '上海',
+        '北京',
+        '河北',
+        '江西',
+        '陕西',
+        '重庆',
         '云南',
-        '内蒙古',
-        '新疆',
-        '西藏',
-        '宁夏',
+        '辽宁',
         '广西',
+        '山西',
+        '内蒙古',
+        '贵州',
+        '新疆',
+        '天津',
+        '吉林',
+        '黑龙江',
+        '甘肃',
+        '海南',
+        '宁夏',
+        '青海',
+        '西藏',
+        '台湾',
         '香港',
         '澳门'
       ]
@@ -79,19 +79,20 @@ export default {
           containLabel: true
         },
         xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
           type: 'category',
           data: state.xAxisData,
           axisLabel: {
             interval: 0,
-            rotate: 45,
+            // rotate: 45,
             textStyle: {
               color: 'black',
               fontSize: 10
             }
           }
-        },
-        yAxis: {
-          type: 'value'
         },
         series: [
           {
@@ -112,7 +113,7 @@ export default {
         if (props.article && props.article.length > 0) {
           state.yAxisData = []
           state.xAxisData = []
-          for (let i = 0; i < state.provinces.length; i++) {
+          for (let i = state.provinces.length - 1; i >= 0; i--) {
             state.yAxisData.push(countStrNumber(props.article, state.provinces[i]))
             state.xAxisData.push(state.provinces[i])
           }

@@ -75,7 +75,7 @@ export default {
         const index = props.data.length > 50 ? 50 : props.data.length
         state.yAxisData = []
         state.xAxisData = []
-        for (let i = 0; i < index; i++) {
+        for (let i = index; i >= 0; i--) {
           state.yAxisData.push(props.data[i].name)
           state.xAxisData.push(props.data[i].value)
         }

@@ -61,8 +61,8 @@ export default {
         '重庆',
         '深圳',
         '广州',
-        '上海',
-        '北京'
+        '北京',
+        '上海'
       ]
     })
     const drawHistogram = () => {
