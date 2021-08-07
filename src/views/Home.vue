@@ -28,6 +28,9 @@
         <el-tab-pane label="词性分析" name="fourth">
           <positive-negative :article="articleInput" :positive="analyResult.positive" :negative="analyResult.negative" />
         </el-tab-pane>
+        <el-tab-pane label="机构分析" name="five">
+          <org-result :article="articleInput" />
+        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
@@ -41,6 +44,7 @@ import ProvinceResult from '@/components/ProvinceResult.vue'
 import CityResult from '@/components/CityResult.vue'
 import HightlightKeyword from '@/components/HightlightKeyword.vue'
 import positiveNegative from '@/components/positiveNegative.vue'
+import OrgResult from '@/components/OrgResult.vue'
 import { dealWords, countWords } from '@/utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
