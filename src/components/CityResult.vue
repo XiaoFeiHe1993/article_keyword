@@ -1,6 +1,6 @@
 <template>
   <div class="city-result">
-    <div id="city" style="width: 100%; height: 400px;"></div>
+    <div id="city" style="width: 100%; height: 800px;"></div>
   </div>
 </template>
 
@@ -21,48 +21,48 @@ export default {
       yAxisData: [],
       xAxisData: [],
       citys: [
-        '北京',
-        '天津',
-        '上海',
-        '重庆',
+        '澳门',
+        '香港',
+        '海口',
+        '兰州',
+        '西宁',
+        '呼和浩特',
+        '乌鲁木齐',
+        '拉萨',
+        '石家庄',
+        '太原',
+        '贵阳',
+        '昆明',
+        '银川',
+        '南宁',
         '哈尔滨',
         '长春',
         '沈阳',
         '大连',
-        '石家庄',
-        '太原',
-        '西宁',
-        '济南',
-        '青岛',
-        '郑州',
-        '南京',
-        '苏州',
-        '无锡',
-        '合肥',
-        '杭州',
-        '宁波',
+        '南昌',
         '福州',
         '厦门',
         '泉州',
-        '南昌',
-        '长沙',
-        '武汉',
-        '广州',
-        '深圳',
-        '佛山',
-        '海口',
-        '兰州',
         '西安',
-        '程度',
-        '贵阳',
-        '昆明',
-        '呼和浩特',
-        '乌鲁木齐',
-        '拉萨',
-        '银川',
-        '南宁',
-        '香港',
-        '澳门'
+        '合肥',
+        '佛山',
+        '济南',
+        '郑州',
+        '长沙',
+        '青岛',
+        '无锡',
+        '宁波',
+        '天津',
+        '南京',
+        '武汉',
+        '杭州',
+        '成都',
+        '苏州',
+        '重庆',
+        '深圳',
+        '广州',
+        '上海',
+        '北京'
       ]
     })
     const drawHistogram = () => {
@@ -115,8 +115,8 @@ export default {
           state.yAxisData = []
           state.xAxisData = []
           for (let i = 0; i < state.citys.length; i++) {
-            state.yAxisData.push(countStrNumber(props.article, state.citys[i]))
-            state.xAxisData.push(state.citys[i])
+            state.xAxisData.push(countStrNumber(props.article, state.citys[i]))
+            state.yAxisData.push(state.citys[i])
           }
           drawHistogram()
         }

@@ -116,8 +116,6 @@ export default {
             state.yAxisData.push(countStrNumber(props.article, state.provinces[i]))
             state.xAxisData.push(state.provinces[i])
           }
-          console.log('....', state.yAxisData)
-          console.log('....', state.xAxisData)
           drawHistogram()
         }
       }

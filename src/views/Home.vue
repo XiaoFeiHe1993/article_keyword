@@ -6,7 +6,7 @@
           <span>文章内容</span>
         </div>
       </template>
-      <el-input type="textarea" v-model="articleInput" @input="handleInputChange" :rows="30" class="article-input" />
+      <el-input type="textarea" v-model="articleInput" @input="handleInputChange" :rows="36" class="article-input" />
     </el-card>
     <el-card class="box-card" style="margin-left: 10px;">
       <template #header>

@@ -1,6 +1,6 @@
 <template>
   <div class="echart-histogram">
-    <div id="histogram" style="width: 100%; height: 400px;"></div>
+    <div id="histogram" style="width: 100%; height: 800px;"></div>
   </div>
 </template>
 
@@ -47,7 +47,14 @@ export default {
         },
         yAxis: {
           type: 'category',
-          data: state.yAxisData
+          data: state.yAxisData,
+          axisLabel: {
+            interval: 0,
+            textStyle: {
+              color: 'black',
+              fontSize: 10
+            }
+          }
         },
         series: [
           {

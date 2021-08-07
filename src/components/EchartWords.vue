@@ -1,6 +1,6 @@
 <template>
   <div class="echart-words">
-    <div ref="cloud" id="cloud" style="width: 100%;height: 400px;"></div>
+    <div ref="cloud" id="cloud" style="width: 100%;height: 600px;"></div>
   </div>
 </template>
 
@@ -82,6 +82,6 @@ export default {
 
 <style lang="less" scoped>
 .echart-words {
-  height: 400px;
+  height: 600px;
 }
 </style>
