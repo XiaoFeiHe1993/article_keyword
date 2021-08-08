@@ -29,10 +29,10 @@
           <positive-negative :article="articleInput" :positive="analyResult.positive" :negative="analyResult.negative" />
         </el-tab-pane>
         <el-tab-pane label="机构分析" name="five">
-          <org-result :article="articleInput" />
+          <!-- <org-result :article="articleInput" /> -->
         </el-tab-pane>
         <el-tab-pane label="职位分析" name="six">
-          <position-result :article="articleInput" />
+          <!-- <position-result :article="articleInput" /> -->
         </el-tab-pane>
       </el-tabs>
     </el-card>
@@ -47,8 +47,8 @@ import ProvinceResult from '@/components/ProvinceResult.vue'
 import CityResult from '@/components/CityResult.vue'
 import HightlightKeyword from '@/components/HightlightKeyword.vue'
 import positiveNegative from '@/components/positiveNegative.vue'
-import OrgResult from '@/components/OrgResult.vue'
-import PositionResult from '@/components/PositionResult.vue'
+// import OrgResult from '@/components/OrgResult.vue'
+// import PositionResult from '@/components/PositionResult.vue'
 import { dealWords, countWords } from '@/utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
@@ -61,9 +61,9 @@ export default defineComponent({
     ProvinceResult,
     CityResult,
     HightlightKeyword,
-    positiveNegative,
-    OrgResult,
-    PositionResult
+    positiveNegative
+    // OrgResult,
+    // PositionResult
   },
   setup () {
     const state = reactive({
