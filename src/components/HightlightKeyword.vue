@@ -16,7 +16,7 @@ export default {
   setup (props) {
     const state = reactive({
       result: '',
-      keywords: ['加快', '加强', '加大', '支持', '推进', '推动', '增强', '加强']
+      keywords: ['加快', '加强', '加大', '支持', '推进', '推动', '增强', '加强', '提高', '强化']
     })
     watch(
       () => props.article,
