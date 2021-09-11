@@ -50,8 +50,9 @@ class MainInit {
     })
     // 赋予模板
     const menu = Menu.buildFromTemplate(menuconfig as any)
-    // 加载模板
-    Menu.setApplicationMenu(menu)
+    // 隐藏菜单栏
+    // Menu.setApplicationMenu(menu)
+    Menu.setApplicationMenu(null)
     // 加载主窗口
     this.mainWindow.loadURL(this.winURL)
     // 下载文件

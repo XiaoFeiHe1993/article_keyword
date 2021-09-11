@@ -1,8 +1,8 @@
 {
-  "name": "electron-vite-template",
+  "name": "article_keyword",
   "version": "1.0.0",
   "main": "./dist/electron/main/main.js",
-  "author": "sky <https://github.com/umbrella22>",
+  "author": "https://github.com/XiaoFeiHe1993",
   "license": "MIT",
   "scripts": {
     "dev": "node .electron-vite/dev-runner.js",
