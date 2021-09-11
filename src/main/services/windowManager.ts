@@ -187,9 +187,10 @@ class MainInit {
       webPreferences: { experimentalFeatures: true }
     })
 
-    this.loadWindow.loadURL(loadingURL)
-    this.loadWindow.show()
-    this.loadWindow.setAlwaysOnTop(true)
+    // 去掉loading窗口
+    // this.loadWindow.loadURL(loadingURL)
+    // this.loadWindow.show()
+    // this.loadWindow.setAlwaysOnTop(true)
     // 延迟两秒可以根据情况后续调快，= =，就相当于个，sleep吧，就那种。 = =。。。
     setTimeout(() => {
       this.createMainWindow()

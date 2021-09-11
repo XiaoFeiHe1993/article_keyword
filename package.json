@@ -1,6 +1,6 @@
 {
   "name": "article_keyword",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./dist/electron/main/main.js",
   "author": "https://github.com/XiaoFeiHe1993",
   "license": "MIT",

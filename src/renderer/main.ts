@@ -9,13 +9,26 @@ import router from './router'
 import { errorHandler } from './error'
 import store from './store'
 
+const path = require('path')
+
 import { i18n } from "./i18n"
 
-const app = createApp(App)
+const app: any = createApp(App)
 app.use(ElementPlus, { i18n: i18n.global.t })
 app.use(router)
 app.use(store)
 app.use(i18n)
 errorHandler(app)
+
+// 程序自启动
+const exeName = path.basename(process.execPath)
+app.setLoginItemSettings({
+  openAtLogin: true,
+  openAsHidden: false,
+  path: process.execPath,
+  args: [
+    '--processStart', `"${exeName}"`,
+  ]
+})
 
 app.mount("#app")
