@@ -1,14 +1,14 @@
 <template>
   <div class="home-page">
-    <el-card class="box-card">
+    <el-card class="box-card card-left">
       <template #header>
         <div class="card-header">
           <span>文章内容</span>
         </div>
       </template>
-      <el-input type="textarea" v-model="articleInput" @input="handleInputChange" :rows="43" class="article-input" />
+      <el-input type="textarea" v-model="articleInput" @input="handleInputChange" class="article-input" />
     </el-card>
-    <el-card class="box-card right-content" style="margin-left: 10px;">
+    <el-card class="box-card card-right" style="margin-left: 10px;">
       <el-tabs v-model="activeName" @tab-click="handleTabsClick">
         <el-tab-pane label="关键词分析" name="first">
           <!-- 关键词柱状图 -->
@@ -41,14 +41,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import EchartWords from './common/EchartWords.vue'
-import EchartHistogram from './common/EchartHistogram.vue'
-import ProvinceResult from './common/ProvinceResult.vue'
-import CityResult from './common/CityResult.vue'
-import HightlightKeyword from './common/HightlightKeyword.vue'
-import positiveNegative from './common/positiveNegative.vue'
-// import OrgResult from '@/components/OrgResult.vue'
-// import PositionResult from '@/components/PositionResult.vue'
+import EchartWords from '@/components/common/EchartWords.vue'
+import EchartHistogram from '@/components/common/EchartHistogram.vue'
+import ProvinceResult from '@/components/common/ProvinceResult.vue'
+import CityResult from '@/components/common/CityResult.vue'
+import HightlightKeyword from '@/components/common/HightlightKeyword.vue'
+import positiveNegative from '@/components/common/positiveNegative.vue'
+// import OrgResult from '@/components/common/OrgResult.vue'
+// import PositionResult from '@/components/common/PositionResult.vue'
 import { dealWords, countWords } from '../utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
@@ -97,25 +97,57 @@ export default defineComponent({
   display: flex;
   .box-card {
     width: 100%;
+    height: 100%;
     /deep/ .card-header {
       text-align: left;
     }
+  }
+  .card-left {
     .article-input {
       height: 100%;
     }
+    /deep/ .el-textarea__inner {
+      height: 100%;
+      scrollbar-base-color: transparent;
+      // overflow: hidden;
+    }
     /deep/ .el-card__body {
-      height: calc(100% - 58px);
+      height: calc(100% - 100px);
       overflow-y: auto;
     }
     /deep/ .el-card__body::-webkit-scrollbar {
       display: none; /* Chrome Safari */
     }
   }
-  .right-content {
+  .card-right {
     /deep/ .el-card__body {
-      height: calc(100% - 10px);
-      overflow-y: auto;
+      height: 100%;
+      padding: 0 0;
+    }
+    /deep/ .el-tabs__header {
+      padding: 20px 20px 0 20px;
+    }
+    /deep/ .el-tabs__content {
+      height: calc(100% - 95px) !important;
+      padding: 0 20px 0 20px;
+    }
+    /deep/ .el-tabs {
+      height: 100%;
+    }
+    /deep/ .el-tab-pane {
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+    /deep/ .el-tab-pane::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
     }
   }
+}
+</style>
+<style>
+html {
+  padding: 0 0;
+  margin: 0 0;
 }
 </style>
