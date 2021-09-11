@@ -1,6 +1,10 @@
 'use strict'
 
 import { app } from 'electron'
+
+const { Registry } = require('rage-edit')
+const path = require('path')
+
 import InitWindow from './services/windowManager'
 import DisableButton from './config/DisableButton'
 import electronDevtoolsInstaller, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
@@ -34,4 +38,28 @@ if (process.defaultApp) {
   }
 } else {
   app.setAsDefaultProtocolClient('electron-vue-template')
+}
+
+await Registry.set(
+  'HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers', // 固定，管理员权限应用列表
+  app.getPath('exe'), // 应用路径
+  '~ RUNASADMIN', // 固定写死
+  'REG_SZ', // 固定写死
+)
+
+// 程序自启动
+if (!app.isPackaged) {
+  const exeName = path.basename(process.execPath)
+  app.setLoginItemSettings({
+    openAtLogin: true,
+    openAsHidden: false,
+    path: process.execPath,
+    args: [
+      '--processStart', `"${exeName}"`,
+    ]
+  })
+} else {
+  app.setLoginItemSettings({
+    openAtLogin: true
+  })
 }
