@@ -112,8 +112,10 @@ export default defineComponent({
       // overflow: hidden;
     }
     /deep/ .el-card__body {
-      height: calc(100% - 100px);
+      height: calc(100% - 98px);
       overflow-y: auto;
+      padding: 20px 20px 20px 20px;
+      box-sizing: content-box;
     }
     /deep/ .el-card__body::-webkit-scrollbar {
       display: none; /* Chrome Safari */
@@ -147,7 +149,8 @@ export default defineComponent({
 </style>
 <style>
 html {
+  height: calc(100% - 20px);
   padding: 0 0;
-  margin: 0 0;
+  margin: 10px 10px;
 }
 </style>
