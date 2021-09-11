@@ -29,7 +29,7 @@
           <positive-negative :article="articleInput" :positive="analyResult.positive" :negative="analyResult.negative" />
         </el-tab-pane>
         <el-tab-pane label="机构分析" name="five">
-          <!-- <org-result :article="articleInput" /> -->
+          <org-result :article="articleInput" />
         </el-tab-pane>
         <el-tab-pane label="职位分析" name="six">
           <!-- <position-result :article="articleInput" /> -->
@@ -47,7 +47,7 @@ import ProvinceResult from '@/components/common/ProvinceResult.vue'
 import CityResult from '@/components/common/CityResult.vue'
 import HightlightKeyword from '@/components/common/HightlightKeyword.vue'
 import positiveNegative from '@/components/common/positiveNegative.vue'
-// import OrgResult from '@/components/common/OrgResult.vue'
+import OrgResult from '@/components/common/OrgResult.vue'
 // import PositionResult from '@/components/common/PositionResult.vue'
 import { dealWords, countWords } from '@/utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -61,8 +61,8 @@ export default defineComponent({
     ProvinceResult,
     CityResult,
     HightlightKeyword,
-    positiveNegative
-    // OrgResult,
+    positiveNegative,
+    OrgResult
     // PositionResult
   },
   setup () {
