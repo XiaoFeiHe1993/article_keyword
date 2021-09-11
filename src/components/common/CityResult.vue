@@ -7,7 +7,7 @@
 <script lang="ts">
 import * as echarts from 'echarts'
 import { toRefs, reactive, onMounted, watch } from 'vue'
-import { countStrNumber } from '@/utils/index'
+import { countStrNumber } from '../../utils/index'
 export default {
   name: 'CityResult',
   props: {
