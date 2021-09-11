@@ -41,14 +41,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import EchartWords from '@/components/common/EchartWords.vue'
-import EchartHistogram from '@/components/common/EchartHistogram.vue'
-import ProvinceResult from '@/components/common/ProvinceResult.vue'
-import CityResult from '@/components/common/CityResult.vue'
-import HightlightKeyword from '@/components/common/HightlightKeyword.vue'
-import positiveNegative from '@/components/common/positiveNegative.vue'
-// import OrgResult from '@/components/common/OrgResult.vue'
-// import PositionResult from '@/components/common/PositionResult.vue'
+import EchartWords from './common/EchartWords.vue'
+import EchartHistogram from './common/EchartHistogram.vue'
+import ProvinceResult from './common/ProvinceResult.vue'
+import CityResult from './common/CityResult.vue'
+import HightlightKeyword from './common/HightlightKeyword.vue'
+import positiveNegative from './common/positiveNegative.vue'
+// import OrgResult from './common/OrgResult.vue'
+// import PositionResult from './common/PositionResult.vue'
 import { dealWords, countWords } from '../utils/index'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sentiment = require('sentiment-zh_cn_web')
