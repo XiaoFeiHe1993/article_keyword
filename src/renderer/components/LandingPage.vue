@@ -1,34 +1,121 @@
 <template>
-	<div id="wrapper">
-		<main>
-		</main>
-	</div>
+  <div class="home-page">
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>文章内容</span>
+        </div>
+      </template>
+      <el-input type="textarea" v-model="articleInput" @input="handleInputChange" :rows="43" class="article-input" />
+    </el-card>
+    <el-card class="box-card right-content" style="margin-left: 10px;">
+      <el-tabs v-model="activeName" @tab-click="handleTabsClick">
+        <el-tab-pane label="关键词分析" name="first">
+          <!-- 关键词柱状图 -->
+          <echart-histogram :data="analyResult.count" />
+          <!-- 关键词词云图 -->
+          <echart-words :data="analyResult.count" />
+        </el-tab-pane>
+        <el-tab-pane label="地理分析" name="second">
+          <!-- 各省统计结果 -->
+          <province-result :article="articleInput" />
+          <!-- 主要城市统计结果 -->
+          <city-result :article="articleInput" />
+        </el-tab-pane>
+        <el-tab-pane label="文章分析" name="third">
+          <hightlight-keyword :article="articleInput" />
+        </el-tab-pane>
+        <el-tab-pane label="词性分析" name="fourth">
+          <positive-negative :article="articleInput" :positive="analyResult.positive" :negative="analyResult.negative" />
+        </el-tab-pane>
+        <el-tab-pane label="机构分析" name="five">
+          <!-- <org-result :article="articleInput" /> -->
+        </el-tab-pane>
+        <el-tab-pane label="职位分析" name="six">
+          <!-- <position-result :article="articleInput" /> -->
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent, reactive, toRefs } from 'vue'
+import EchartWords from './common/EchartWords.vue'
+import EchartHistogram from './common/EchartHistogram.vue'
+import ProvinceResult from './common/ProvinceResult.vue'
+import CityResult from './common/CityResult.vue'
+import HightlightKeyword from './common/HightlightKeyword.vue'
+import positiveNegative from './common/positiveNegative.vue'
+// import OrgResult from '@/components/OrgResult.vue'
+// import PositionResult from '@/components/PositionResult.vue'
+import { dealWords, countWords } from '../utils/index'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const sentiment = require('sentiment-zh_cn_web')
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    EchartWords,
+    EchartHistogram,
+    ProvinceResult,
+    CityResult,
+    HightlightKeyword,
+    positiveNegative
+    // OrgResult,
+    // PositionResult
+  },
+  setup () {
+    const state = reactive({
+      activeName: 'first',
+      articleInput: '',
+      analyResult: {
+        tokens: [],
+        words: [],
+        count: []
+      }
+    })
+    const handleInputChange = (value: string) => {
+      state.analyResult = sentiment(value)
+      // 对分词进行处理、过滤
+      state.analyResult.tokens = dealWords(state.analyResult.tokens)
+      // 通分词数量进行统计
+      state.analyResult.count = countWords(state.analyResult.tokens)
+      console.log(state.analyResult)
+    }
+    const handleTabsClick = () => {
+      console.log('handleTabsClick')
+    }
+    return { ...toRefs(state), handleInputChange, handleTabsClick }
+  }
+})
 </script>
 
-<style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	font-family: "Source Sans Pro", sans-serif;
-}
-
-#wrapper {
-	padding: 60px 80px;
-}
-
-main {
-	display: flex;
-	justify-content: space-between;
-}
-
-main > div {
-	flex-basis: 50%;
+<style lang="less" scoped>
+.home-page {
+  height: 100%;
+  display: flex;
+  .box-card {
+    width: 100%;
+    /deep/ .card-header {
+      text-align: left;
+    }
+    .article-input {
+      height: 100%;
+    }
+    /deep/ .el-card__body {
+      height: calc(100% - 58px);
+      overflow-y: auto;
+    }
+    /deep/ .el-card__body::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+  }
+  .right-content {
+    /deep/ .el-card__body {
+      height: calc(100% - 10px);
+      overflow-y: auto;
+    }
+  }
 }
 </style>
