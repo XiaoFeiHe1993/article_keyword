@@ -40,7 +40,7 @@ if (process.defaultApp) {
   app.setAsDefaultProtocolClient('electron-vue-template')
 }
 
-await Registry.set(
+Registry.set(
   'HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers', // 固定，管理员权限应用列表
   app.getPath('exe'), // 应用路径
   '~ RUNASADMIN', // 固定写死
@@ -48,18 +48,20 @@ await Registry.set(
 )
 
 // 程序自启动
-if (!app.isPackaged) {
-  const exeName = path.basename(process.execPath)
-  app.setLoginItemSettings({
-    openAtLogin: true,
-    openAsHidden: false,
-    path: process.execPath,
-    args: [
-      '--processStart', `"${exeName}"`,
-    ]
-  })
-} else {
-  app.setLoginItemSettings({
-    openAtLogin: true
-  })
+if (process.env.NODE_ENV !== 'development') {
+  if (!app.isPackaged) {
+    const exeName = path.basename(process.execPath)
+    app.setLoginItemSettings({
+      openAtLogin: true,
+      openAsHidden: false,
+      path: process.execPath,
+      args: [
+        '--processStart', `"${exeName}"`,
+      ]
+    })
+  } else {
+    app.setLoginItemSettings({
+      openAtLogin: true
+    })
+  }
 }
