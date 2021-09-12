@@ -166,7 +166,6 @@ export default {
 <style lang="less" scoped>
 .orgresult {
   width: 100%;
-  height: 800px;
   white-space: pre-line;
   text-align: left;
   overflow-y: auto;
