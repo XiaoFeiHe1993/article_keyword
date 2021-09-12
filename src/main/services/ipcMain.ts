@@ -3,6 +3,8 @@ import Server from '../server'
 import { winURL } from '../config/StaticPath'
 import { updater } from './HotUpdater'
 
+var nodejieba = require("nodejieba")
+
 export default {
   Mainfunc(mainWindow: BrowserWindow, IsUseSysTitle: Boolean) {
     ipcMain.handle('IsUseSysTitle', async () => {
@@ -104,6 +106,12 @@ export default {
           })
         }
       })
+    }),
+    // 获取文章中的机构信息
+    ipcMain.handle('article-org', (event, arg) => {
+      const tags = nodejieba.tag(arg) || []
+      const filters = tags.filter(item => ['nt', 'ORG'].indexOf(item.tag) > -1)
+      return filters
     })
   }
 }
