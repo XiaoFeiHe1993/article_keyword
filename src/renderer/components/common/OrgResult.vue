@@ -16,20 +16,18 @@ export default {
   setup (props) {
     const state = reactive({
       result: '',
-      otherOrg: [
-        '国务院办公厅'
-      ],
+      otherOrg: [],
     })
     watch(
       () => props.article,
       () => {
-        ipcRenderer.invoke('article-org', props.article).then(res => {
+        ipcRenderer.invoke('baidu-keywords-org', props.article).then(res => {
           state.result = props.article
           for (let i = 0; i < state.otherOrg.length; i++) {
             state.result = state.result.replaceAll(state.otherOrg[i], `<span style="background-color: yellow;">${state.otherOrg[i]}</span>`)
           }
           for (let i = 0; i < res.length; i++) {
-            state.result = state.result.replaceAll(res[i].word, `<span style="background-color: pink;">${res[i].word}</span>`)
+            state.result = state.result.replaceAll(res[i].item, `<span style="background-color: pink;">${res[i].item}</span>`)
           }
         })
       }

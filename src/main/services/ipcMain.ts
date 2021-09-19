@@ -2,6 +2,7 @@ import { ipcMain, dialog, BrowserWindow } from 'electron'
 import Server from '../server'
 import { winURL } from '../config/StaticPath'
 import { updater } from './HotUpdater'
+import { isTemplateNode } from '@vue/compiler-core';
 
 // var nodejieba = require("nodejieba")
 
@@ -137,6 +138,30 @@ export default {
       };
       const data = await client.KeywordsExtraction(params)
       return data.Keywords || []
+    }),
+    // 百度云-关键词分析-机构
+    ipcMain.handle('baidu-keywords-org', async (event, arg) => {
+      const AipNlpClient = require("baidu-aip-sdk").nlp;
+      const APP_ID = "24876466";
+      const API_KEY = "t8efxqYQxwhalk9GQ6MN72Ok";
+      const SECRET_KEY = "AeaMOjcRfG8bLnCtR2qwDitSv6QOMlOX";
+      const client = new AipNlpClient(APP_ID, API_KEY, SECRET_KEY);
+      // 调用词法分析
+      const data = await client.lexer(arg)
+      const result = (data.items || []).map(temp => {
+        return {
+          basic_words: temp.basic_words, // 基本词成分
+          // byte_length: temp.byte_length, // 字节级length
+          // byte_offset: temp.byte_offset, // 在item中的字节级offset
+          formal: temp.formal, // 词汇的标准化表达，主要针对时间、数字单位
+          item: temp.item, // 词汇的字符串
+          loc_details: temp.loc_details, // 地址成分，非必需
+          ne: temp.ne, // 命名实体类型，命名实体识别算法使用。
+          pos: temp.pos, // 词性，词性标注算法使用。
+          uri: temp.uri, // 链指到知识库的URI，只对命名实体有效。
+        }
+      })
+      return result.filter(temp => ['ORG', 'nt', 'org', 'NT'].indexOf(temp.ne) > -1)
     })
   }
 }
