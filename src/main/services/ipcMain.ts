@@ -5,6 +5,9 @@ import { updater } from './HotUpdater'
 
 // var nodejieba = require("nodejieba")
 
+// 腾讯云sdk
+const tencentcloud = require("tencentcloud-sdk-nodejs");
+
 export default {
   Mainfunc(mainWindow: BrowserWindow, IsUseSysTitle: Boolean) {
     ipcMain.handle('IsUseSysTitle', async () => {
@@ -112,6 +115,28 @@ export default {
       // const tags = nodejieba.tag(arg) || []
       // const filters = tags.filter(item => ['nt', 'ORG'].indexOf(item.tag) > -1)
       // return filters
+    })
+    // 腾讯云-关键词提取
+    ipcMain.handle('tencent-keywords', async (event, arg) => {
+      const NlpClient = tencentcloud.nlp.v20190408.Client;
+      const clientConfig = {
+        credential: {
+          secretId: "AKID46xd9VysoZ8vb9hjldKqBKJ7nHZgpOxM",
+          secretKey: "c6OboqjT4Ujmdml6Z8e3IMEuOhtyseFi",
+        },
+        region: "ap-guangzhou",
+        profile: {
+          httpProfile: {
+            endpoint: "nlp.tencentcloudapi.com",
+          },
+        },
+      };
+      const client = new NlpClient(clientConfig);
+      const params = {
+        Text: arg
+      };
+      const data = await client.KeywordsExtraction(params)
+      return data.Keywords || []
     })
   }
 }
