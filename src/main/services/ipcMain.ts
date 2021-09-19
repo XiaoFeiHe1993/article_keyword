@@ -122,8 +122,8 @@ export default {
       const NlpClient = tencentcloud.nlp.v20190408.Client;
       const clientConfig = {
         credential: {
-          secretId: "AKID46xd9VysoZ8vb9hjldKqBKJ7nHZgpOxM",
-          secretKey: "c6OboqjT4Ujmdml6Z8e3IMEuOhtyseFi",
+          secretId: "",
+          secretKey: "",
         },
         region: "ap-guangzhou",
         profile: {
