@@ -31,9 +31,9 @@
         <el-tab-pane label="机构分析" name="five">
           <org-result :article="articleInput" />
         </el-tab-pane>
-        <el-tab-pane label="职位分析" name="six">
-          <!-- <position-result :article="articleInput" /> -->
-        </el-tab-pane>
+        <!-- <el-tab-pane label="职位分析" name="six">
+          <position-result :article="articleInput" />
+        </el-tab-pane> -->
       </el-tabs>
     </el-card>
   </div>
